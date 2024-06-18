@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+<!ENTITY appName "Net2Call">
+]>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="notification_channel_service_id" translatable="false">linphone_notification_service_id</string>
+    <string name="notification_channel_incoming_call_id" translatable="false">linphone_notification_call_id</string>
+    <string name="incoming_call_notification_title" translatable="false">Incoming call</string>
+    <string name="incoming_call_notification_hangup_action_label" translatable="false">Hangup</string>
+    <string name="incoming_call_notification_answer_action_label" translatable="false">Answer</string>
+    <string name="service_name">Net2Call Service</string>
+    <string name="service_auto_start_description">Net2Call has been started automatically</string>
+    <string name="service_description">This is required to receive calls while in background</string>
+    <string name="call_notification_paused">Paused call</string>
+    <string name="call_notification_outgoing">Outgoing call</string>
+    <string name="call_notification_active">Call running</string>
+    <string name="app_name" translatable="false">Net2Call</string>
+    <string name="notification_channel_service_name">&appName; service notification</string>
+    <string name="notification_channel_incoming_call_name">&appName; incoming calls notifications</string>
+</resources>

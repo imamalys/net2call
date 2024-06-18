@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Starting Android 13 we need to ask notification permission -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Needed for auto start at boot and to ensure the service won't be killed by OS while in call -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Needed for foreground service
+    (https://developer.android.com/guide/components/foreground-services) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!-- Needed for Android 14
+    https://developer.android.com/about/versions/14/behavior-changes-14#fgs-types -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- Needed for Telecom Manager -->
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
+    <!-- Helps filling phone number and country code in assistant -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <application
+        android:name="com.atlasat.android_phone_sdk.SDKCore">
+        <!-- The following isn't mandatory but having a foreground service prevents Android to kill the app during a call -->
+        <!-- You can create your own service that inherits from this class for simplicity or handle the foreground service yourself -->
+<!--        <service android:name="org.linphone.core.tools.service.CoreService"-->
+<!--            android:foregroundServiceType="phoneCall|camera|microphone"-->
+<!--            android:stopWithTask="false" />-->
+        <service
+            android:name="com.atlasat.android_phone_sdk.core.CoreService"
+            android:exported="false"
+            android:foregroundServiceType="phoneCall|microphone|dataSync"
+            android:stopWithTask="false"
+            android:label="@string/app_name" />
+        <receiver
+            android:name="com.atlasat.android_phone_sdk.notifications.NotificationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="org.linphone.core.tools.service.PushService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync"
+            android:stopWithTask="false"
+            android:label="Net2Call" />
+    </application>
+</manifest>
